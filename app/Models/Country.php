@@ -14,6 +14,6 @@ class Country extends Model
     }
 
     public function logo(){
-        return $this->hasOne(Logo::class);
+        return $this->belongsTo(Logo::class);
     }
 }

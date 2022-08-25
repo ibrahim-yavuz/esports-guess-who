@@ -10,7 +10,7 @@ class Team extends Model
     use HasFactory;
 
     public function logo(){
-        return $this->hasOne(Logo::class);
+        return $this->belongsTo(Logo::class);
     }
 
     public function country(){

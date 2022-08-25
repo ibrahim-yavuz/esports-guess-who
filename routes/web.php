@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Player;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/deneme', function (){
-    $logos = \App\Models\Logo::all();
-    return view('deneme', compact('logos'));
-    //dd(\Illuminate\Support\Facades\Storage::url('logos'));
+Route::get('upload-image-form', function (){
+    return view('upload_image');
 });
+
+Route::post('upload-image', function (Request $request){
+    $file_name = $request->file('logo')->getClientOriginalName();
+    $type = $request->type;
+    $uploaded_path = 'logos/'.$type."/";
+    $request->file('logo')->storeAs("public/".$uploaded_path, $file_name);
+
+    $full_path_of_logo = asset("storage/".$uploaded_path.$file_name);
+    $logo = new \App\Models\Logo();
+    $logo->logo_url = $full_path_of_logo;
+    $logo->save();
+});
+
+Route::resource('players', \App\Http\Controllers\PlayerController::class);
+Route::resource('countries', \App\Http\Controllers\CountryController::class);
+Route::resource('teams', \App\Http\Controllers\TeamController::class);
+Route::resource('games', \App\Http\Controllers\GameController::class);
+
+

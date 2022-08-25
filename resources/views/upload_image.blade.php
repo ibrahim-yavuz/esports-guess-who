@@ -7,8 +7,11 @@
     <title>Laravel</title>
 </head>
 <body>
-    @foreach($logos as $logo)
-        <img src="{{ $logo->logo_url }}" height="50">
-    @endforeach
+<form method="POST" action="/upload-image" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="logo"/><br>
+    <input type="text" name="type" placeholder="Type"/><br>
+    <input type="submit"/>
+</form>
 </body>
 </html>

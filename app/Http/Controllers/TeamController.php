@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\Logo;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\Count;
 
 class TeamController extends Controller
 {
@@ -14,28 +17,36 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        return Team::with('country.logo')->with('logo')->get();
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        $logos = Logo::all();
+        return view('team.create', compact('countries', 'logos'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $team = new Team();
+        $team->name = $request->name;
+        $team->country_id = $request->country_id;
+        $team->logo_id = $request->logo_id;
+        $team->save();
+
+        return redirect()->back();
     }
 
     /**

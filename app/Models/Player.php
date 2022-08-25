@@ -9,6 +9,8 @@ class Player extends Model
 {
     use HasFactory;
 
+    protected $dates = ['birth_date'];
+
     public function country()
     {
         return $this->belongsTo(Country::class);
@@ -23,6 +25,6 @@ class Player extends Model
     }
 
     public function roles(){
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'player_roles');
     }
 }
