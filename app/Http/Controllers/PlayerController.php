@@ -15,11 +15,12 @@ class PlayerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $players = Player::all();
+        return view('player.list', compact('players'));
     }
 
     /**
@@ -88,7 +89,7 @@ class PlayerController extends Controller
     {
         $this->updatePlayer($request, $player);
 
-        return redirect()->back();
+        return redirect()->route('players.index');
     }
 
     /**
@@ -118,6 +119,6 @@ class PlayerController extends Controller
         $player->mvp_count = $request->mvp_count;
         $player->won_tournament_count = $request->won_tournament_count;
         $player->save();
-        $player->roles()->attach($request->roles);
+        $player->roles()->sync($request->roles);
     }
 }

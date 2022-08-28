@@ -11,6 +11,12 @@ class Player extends Model
 
     protected $dates = ['birth_date'];
 
+    protected $hidden = ['country_id', 'team_id', 'game_id', 'created_at', 'updated_at'];
+
+    public function logo(){
+        return $this->belongsTo(Logo::class);
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);

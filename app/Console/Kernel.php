@@ -2,6 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ChangeDailyPlayerCommand;
+use App\Http\Controllers\PlayerController;
+use App\Models\DailyPlayer;
+use App\Models\Player;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +19,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('change:player')->everyMinute();
     }
 
     /**

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nick');
             $table->string('name');
             $table->timestamp('birth_date');
+            $table->bigInteger('logo_id');
             $table->bigInteger('country_id');
             $table->bigInteger('team_id');
             $table->bigInteger('game_id');
