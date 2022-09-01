@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('change:player')->everyMinute();
+        $schedule->command('change:player')->daily();
     }
 
     /**

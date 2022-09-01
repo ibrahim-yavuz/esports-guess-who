@@ -16,7 +16,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        $players = Player::with('country.logo', 'team', 'roles', 'game', 'logo')->get();
+        $players = Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->get();
         return $players;
     }
 

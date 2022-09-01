@@ -18,8 +18,14 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
-    return Player::with('country.logo', 'team', 'roles', 'game')->find($dailyPlayer->player_id);
+    return Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
 });
+
+Route::resource('players', \App\Http\Controllers\PlayerController::class);
+Route::resource('countries', \App\Http\Controllers\CountryController::class);
+Route::resource('teams', \App\Http\Controllers\TeamController::class);
+Route::resource('games', \App\Http\Controllers\GameController::class);
+
 
 //Route::get('upload-image-form', function (){
 //    return view('upload_image');
@@ -36,10 +42,3 @@ Route::get('/', function () {
 //    $logo->logo_url = $full_path_of_logo;
 //    $logo->save();
 //});
-//
-Route::resource('players', \App\Http\Controllers\PlayerController::class);
-Route::resource('countries', \App\Http\Controllers\CountryController::class);
-Route::resource('teams', \App\Http\Controllers\TeamController::class);
-Route::resource('games', \App\Http\Controllers\GameController::class);
-
-
