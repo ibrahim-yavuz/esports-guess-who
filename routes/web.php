@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', function () {
-    $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
-    if($dailyPlayer == null){
-        return "Couldn' find Player";
-    }
-    return Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
+    return ['data' => 'succesfull'];
+//    $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
+//    if($dailyPlayer == null){
+//        return "Couldn' find Player";
+//    }
+//    return Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
 });
 
 Route::resource('players', \App\Http\Controllers\PlayerController::class);
