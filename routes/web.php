@@ -17,12 +17,11 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', function () {
-    return ['data' => 'succesfull'];
-//    $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
-//    if($dailyPlayer == null){
-//        return "Couldn' find Player";
-//    }
-//    return Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
+    $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
+    if($dailyPlayer == null){
+        return "Couldn' find Player";
+    }
+    return Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
 });
 
 Route::resource('players', \App\Http\Controllers\PlayerController::class);
@@ -31,18 +30,18 @@ Route::resource('teams', \App\Http\Controllers\TeamController::class);
 Route::resource('games', \App\Http\Controllers\GameController::class);
 
 
-//Route::get('upload-image-form', function (){
-//    return view('upload_image');
-//});
-////
-//Route::post('upload-image', function (Request $request){
-//    $file_name = $request->file('logo')->getClientOriginalName();
-//    $type = $request->type;
-//    $uploaded_path = 'logos/'.$type."/";
-//    $request->file('logo')->storeAs("public/".$uploaded_path, $file_name);
+Route::get('upload-image-form', function (){
+    return view('upload_image');
+});
 //
-//    $full_path_of_logo = asset("storage/".$uploaded_path.$file_name);
-//    $logo = new \App\Models\Logo();
-//    $logo->logo_url = $full_path_of_logo;
-//    $logo->save();
-//});
+Route::post('upload-image', function (Request $request){
+    $file_name = $request->file('logo')->getClientOriginalName();
+    $type = $request->type;
+    $uploaded_path = 'logos/'.$type."/";
+    $request->file('logo')->storeAs("public/".$uploaded_path, $file_name);
+
+    $full_path_of_logo = asset("storage/".$uploaded_path.$file_name);
+    $logo = new \App\Models\Logo();
+    $logo->logo_url = $full_path_of_logo;
+    $logo->save();
+});
