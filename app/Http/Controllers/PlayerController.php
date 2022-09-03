@@ -19,6 +19,8 @@ class PlayerController extends Controller
      */
     public function index()
     {
+
+        dd("çöp akif");
         $players = Player::all();
         return view('player.list', compact('players'));
     }
