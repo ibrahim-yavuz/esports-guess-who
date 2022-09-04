@@ -25,43 +25,43 @@ Route::get('filter-players/', function (){
     return [];
 });
 
-//Route::post('upload-image', function (Request $request){
-//    $file_name = $request->file('logo')->getClientOriginalName();
-//    $type = $request->type;
-//    $uploaded_path = 'logos/'.$type."/";
-//    $request->file('logo')->storeAs("public/".$uploaded_path, $file_name);
-//
-//    $full_path_of_logo = asset("storage/".$uploaded_path.$file_name);
-//    $logo = new \App\Models\Logo();
-//    $logo->logo_url = $full_path_of_logo;
-//    $logo->save();
-//});
+Route::post('upload-image', function (Request $request){
+    $file_name = $request->file('logo')->getClientOriginalName();
+    $type = $request->type;
+    $uploaded_path = 'logos/'.$type."/";
+    $request->file('logo')->storeAs("public/".$uploaded_path, $file_name);
 
-//Route::post('countries', function (Request $request){
-//    $country = new Country();
-//    $country->name = $request->name;
-//    $country->logo_id = $request->logo_id;
-//    $country->save();
-//});
+    $full_path_of_logo = asset("storage/".$uploaded_path.$file_name);
+    $logo = new \App\Models\Logo();
+    $logo->logo_url = $full_path_of_logo;
+    $logo->save();
+});
 
-//Route::post('teams', function (Request $request){
-//    $team = new \App\Models\Team();
-//    $team->name = $request->name;
-//    $team->country_id = $request->country_id;
-//    $team->logo_id = $request->logo_id;
-//    $team->save();
-//});
-//
-//Route::post('players', function (Request $request){
-//    $player = new \App\Models\Player();
-//    $player->nick = $request->nick;
-//    $player->name = $request->name;
-//    $player->birth_date = $request->birth_date;
-//    $player->logo_id = $request->logo_id;
-//    $player->country_id = $request->country_id;
-//    $player->team_id = $request->team_id;
-//    $player->game_id = 1;
-//    $player->mvp_count = $request->mvp_count;
-//    $player->won_tournament_count = $request->won_tournament_count;
-//    $player->save();
-//});
+Route::post('countries', function (Request $request){
+    $country = new Country();
+    $country->name = $request->name;
+    $country->logo_id = $request->logo_id;
+    $country->save();
+});
+
+Route::post('teams', function (Request $request){
+    $team = new \App\Models\Team();
+    $team->name = $request->name;
+    $team->country_id = $request->country_id;
+    $team->logo_id = $request->logo_id;
+    $team->save();
+});
+
+Route::post('players', function (Request $request){
+    $player = new \App\Models\Player();
+    $player->nick = $request->nick;
+    $player->name = $request->name;
+    $player->birth_date = $request->birth_date;
+    $player->logo_id = $request->logo_id;
+    $player->country_id = $request->country_id;
+    $player->team_id = $request->team_id;
+    $player->game_id = 1;
+    $player->mvp_count = $request->mvp_count;
+    $player->won_tournament_count = $request->won_tournament_count;
+    $player->save();
+});
