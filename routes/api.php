@@ -37,9 +37,31 @@ Route::get('filter-players/', function (){
 //    $logo->save();
 //});
 
-Route::post('countries', function (Request $request){
-    $country = new Country();
-    $country->name = $request->name;
-    $country->logo_id = $request->logo_id;
-    $country->save();
+//Route::post('countries', function (Request $request){
+//    $country = new Country();
+//    $country->name = $request->name;
+//    $country->logo_id = $request->logo_id;
+//    $country->save();
+//});
+
+Route::post('teams', function (Request $request){
+    $team = new \App\Models\Team();
+    $team->name = $request->name;
+    $team->country_id = $request->country_id;
+    $team->logo_id = $request->logo_id;
+    $team->save();
+});
+
+Route::post('players', function (Request $request){
+    $player = new \App\Models\Player();
+    $player->nick = $request->nick;
+    $player->name = $request->name;
+    $player->birth_date = $request->birth_date;
+    $player->logo_id = $request->logo_id;
+    $player->country_id = $request->country_id;
+    $player->team_id = $request->team_id;
+    $player->game_id = 1;
+    $player->mvp_count = $request->mvp_count;
+    $player->won_tournament_count = $request->won_tournament_count;
+    $player->save();
 });
