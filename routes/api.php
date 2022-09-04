@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class, array("as" => "api"));
+Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class);
 Route::get('filter-players/{nick}', 'App\Http\Controllers\API\PlayerController@getPlayers');
 Route::get('filter-players/', function (){
     return [];
@@ -44,24 +44,24 @@ Route::get('filter-players/', function (){
 //    $country->save();
 //});
 
-Route::post('teams', function (Request $request){
-    $team = new \App\Models\Team();
-    $team->name = $request->name;
-    $team->country_id = $request->country_id;
-    $team->logo_id = $request->logo_id;
-    $team->save();
-});
-
-Route::post('players', function (Request $request){
-    $player = new \App\Models\Player();
-    $player->nick = $request->nick;
-    $player->name = $request->name;
-    $player->birth_date = $request->birth_date;
-    $player->logo_id = $request->logo_id;
-    $player->country_id = $request->country_id;
-    $player->team_id = $request->team_id;
-    $player->game_id = 1;
-    $player->mvp_count = $request->mvp_count;
-    $player->won_tournament_count = $request->won_tournament_count;
-    $player->save();
-});
+//Route::post('teams', function (Request $request){
+//    $team = new \App\Models\Team();
+//    $team->name = $request->name;
+//    $team->country_id = $request->country_id;
+//    $team->logo_id = $request->logo_id;
+//    $team->save();
+//});
+//
+//Route::post('players', function (Request $request){
+//    $player = new \App\Models\Player();
+//    $player->nick = $request->nick;
+//    $player->name = $request->name;
+//    $player->birth_date = $request->birth_date;
+//    $player->logo_id = $request->logo_id;
+//    $player->country_id = $request->country_id;
+//    $player->team_id = $request->team_id;
+//    $player->game_id = 1;
+//    $player->mvp_count = $request->mvp_count;
+//    $player->won_tournament_count = $request->won_tournament_count;
+//    $player->save();
+//});
