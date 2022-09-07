@@ -19,9 +19,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [''],
+    'allowed_origins' => ['https://esports-guess-who-flutter.web.app'],
 
-    'allowed_origins_patterns' => ['https://esports-guess-who-flutter.web.app'],
+    'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 
