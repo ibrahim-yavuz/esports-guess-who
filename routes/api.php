@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('players', \App\Http\Controllers\API\PlayerController::class);
+Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class);
 Route::get('filter-players/{nick}', 'App\Http\Controllers\API\PlayerController@getPlayers');
 Route::get('filter-players/', function (){
     return [];
