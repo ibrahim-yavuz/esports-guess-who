@@ -19,15 +19,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['cors'])->group(function (){
-    Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class);
-    Route::get('/', function () {
-        $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
-        if($dailyPlayer == null){
-            return "Couldn' find Player";
-        }
-        return \App\Models\Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
-    });
+Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class);
+Route::get('/', function () {
+    $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
+    if($dailyPlayer == null){
+        return "Couldn' find Player";
+    }
+    return \App\Models\Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
 });
 
 //Update functions
