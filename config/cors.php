@@ -21,7 +21,7 @@ return [
 
     'allowed_origins' => [''],
 
-    'allowed_origins_patterns' => ['https://esports-guess-who-flutter.web.app/#/Home'],
+    'allowed_origins_patterns' => ['https://esports-guess-who-flutter.web.app'],
 
     'allowed_headers' => ['*'],
 
