@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class);
-Route::get('/', function () {
+Route::middleware(['cors'])->get('/', function () {
     $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
     if($dailyPlayer == null){
         return "Couldn' find Player";
