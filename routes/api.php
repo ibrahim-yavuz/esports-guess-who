@@ -25,6 +25,14 @@ Route::get('filter-players/', function (){
     return [];
 });
 
+Route::get('/', function () {
+    $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
+    if($dailyPlayer == null){
+        return "Couldn' find Player";
+    }
+    return Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
+});
+
 //Update functions
 Route::get('update-logos', function (){
     $logos = \App\Models\Logo::all();
