@@ -19,28 +19,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class);
-Route::get('filter-players/{nick}', 'App\Http\Controllers\API\PlayerController@getPlayers');
-Route::get('filter-players/', function (){
-    return [];
-});
-
-Route::get('/', function () {
-    $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
-    if($dailyPlayer == null){
-        return "Couldn' find Player";
-    }
-    return \App\Models\Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
+Route::middleware(['cors'])->group(function (){
+    Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class);
+    Route::get('/', function () {
+        $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
+        if($dailyPlayer == null){
+            return "Couldn' find Player";
+        }
+        return \App\Models\Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
+    });
 });
 
 //Update functions
-Route::get('update-logos', function (){
-    $logos = \App\Models\Logo::all();
-    foreach ($logos as $logo){
-        $logo->logo_url = str_replace('http://138.68.69.249', 'https://www.esportsguesswho.com', $logo->logo_url);
-        $logo->save();
-    }
-});
+//Route::get('update-logos', function (){
+//    $logos = \App\Models\Logo::all();
+//    foreach ($logos as $logo){
+//        $logo->logo_url = str_replace('http://138.68.69.249', 'https://www.esportsguesswho.com', $logo->logo_url);
+//        $logo->save();
+//    }
+//});
 
 
 //Add functions
