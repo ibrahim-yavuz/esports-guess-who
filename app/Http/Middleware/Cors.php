@@ -16,7 +16,7 @@ class Cors
      */
     public function handle(Request $request, Closure $next)
     {
-        header('Access-Control-Allow-Origin: ');
+        header('Access-Control-Allow-Origin: https://esports-guess-who-flutter.web.app/#/Home');
         header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Authorization, Origin');
         header('Access-Control-Allow-Methods:  POST, PUT, GET');
         return $next($request);
