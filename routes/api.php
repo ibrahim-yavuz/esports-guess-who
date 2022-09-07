@@ -30,7 +30,7 @@ Route::get('/', function () {
     if($dailyPlayer == null){
         return "Couldn' find Player";
     }
-    return Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
+    return \App\Models\Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
 });
 
 //Update functions
