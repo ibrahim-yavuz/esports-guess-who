@@ -32,7 +32,7 @@ Route::get('/', function () {
 //Route::get('update-logos', function (){
 //    $logos = \App\Models\Logo::all();
 //    foreach ($logos as $logo){
-//        $logo->logo_url = str_replace('http://138.68.69.249', 'https://www.esportsguesswho.com', $logo->logo_url);
+//        $logo->logo_url = str_replace( 'https://www.esportsguesswho.com', 'http://127.0.0.1:8000',$logo->logo_url);
 //        $logo->save();
 //    }
 //});
