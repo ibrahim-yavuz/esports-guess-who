@@ -35,11 +35,11 @@ Route::put('update-roles/{id}', function(Request $request, $id){
 });
 
 
-//Route::post('/tokens/create', function (Request $request) {
-//    $token = \App\Models\User::first()->createToken($request->token_name);
-//
-//    return ['token' => $token->plainTextToken];
-//});
+Route::post('/tokens/create', function (Request $request) {
+    $token = \App\Models\User::first()->createToken($request->token_name);
+
+    return ['token' => $token->plainTextToken];
+});
 
 //Update functions
 //Route::get('update-logos', function (){
