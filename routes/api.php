@@ -28,7 +28,11 @@ Route::get('/', function () {
     return \App\Models\Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
 })->middleware('auth:sanctum');
 
-
+Route::put('update-roles/{id}', function(Request $request, $id){
+    $player = \App\Models\Player::find($id);
+    $player->roles()->sync($request->roles);
+    $player->save();
+});
 
 
 //Route::post('/tokens/create', function (Request $request) {
