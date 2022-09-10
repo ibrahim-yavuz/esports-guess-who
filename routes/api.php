@@ -19,13 +19,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class);
+Route::apiResource('players', \App\Http\Controllers\API\PlayerController::class)->middleware('auth:sanctum');
 Route::get('/', function () {
     $dailyPlayer = \App\Models\DailyPlayer::latest()->first();
     if($dailyPlayer == null){
         return "Couldn' find Player";
     }
     return \App\Models\Player::with('country.logo', 'team.logo', 'roles', 'game', 'logo')->find($dailyPlayer->player_id);
+})->middleware('auth:sanctum');
+
+
+
+
+Route::post('/tokens/create', function (Request $request) {
+    $token = \App\Models\User::first()->createToken($request->token_name);
+
+    return ['token' => $token->plainTextToken];
 });
 
 //Update functions

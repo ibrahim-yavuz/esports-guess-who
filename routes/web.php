@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Player;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -37,3 +38,15 @@ use Illuminate\Support\Facades\Storage;
 //    $logo->logo_url = $full_path_of_logo;
 //    $logo->save();
 //});
+
+Route::get('create-user-form', function (){
+    return view('user.create_user');
+});
+
+Route::post('create-user', function (Request $request){
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+    ]);
+});
