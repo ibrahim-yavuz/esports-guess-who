@@ -19,9 +19,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://app.esportsguesswho.com/#/Home'],
+    'allowed_origins' => ['https://app.esportsguesswho.com'],
 
-    'allowed_origins_patterns' => ['*'],
+    'allowed_origins_patterns' => ['https://app.esportsguesswho.com'],
 
     'allowed_headers' => ['*'],
 
