@@ -39,14 +39,16 @@ use Illuminate\Support\Facades\Storage;
 //    $logo->save();
 //});
 
-//Route::get('create-user-form', function (){
-//    return view('user.create_user');
-//});
-//
-//Route::post('create-user', function (Request $request){
-//    $user = User::create([
-//        'name' => $request->name,
-//        'email' => $request->email,
-//        'password' => \Illuminate\Support\Facades\Hash::make($request->password),
-//    ]);
-//});
+Route::get('create-user-form', function (){
+    return view('user.create_user');
+});
+
+Route::post('create-user', function (Request $request){
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+    ]);
+    $token = $user->createToken($request->token_name);
+    return ['token' => $token->plainTextToken];
+});
